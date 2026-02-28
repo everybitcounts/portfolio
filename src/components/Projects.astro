@@ -1,0 +1,423 @@
+---
+const projects = [
+  {
+    id: "terraform-academy",
+    title: "Terraform Academy Platform",
+    description: "A learning platform I built for teaching Infrastructure as Code. It has interactive labs, progress tracking, and supports multiple organizations with SSO.",
+    category: "Full-Stack",
+    tags: ["React", "TypeScript", "Serverless", "Stripe", "Docker"],
+    features: [
+      "Interactive IaC coding labs",
+      "Progress tracking and certifications",
+      "Multi-tenant organizations with SSO",
+      "Subscription management"
+    ],
+    architecture: {
+      type: "serverless",
+      components: [
+        { name: "React SPA", layer: "frontend" },
+        { name: "Vercel Edge", layer: "cdn" },
+        { name: "Serverless Functions", layer: "api" },
+        { name: "PostgreSQL", layer: "database" },
+        { name: "Stripe", layer: "payments" },
+        { name: "Docker Labs", layer: "compute" }
+      ]
+    }
+  },
+  {
+    id: "aws-dr-automation",
+    title: "AWS DR Automation",
+    description: "Cross-region disaster recovery that fails over in under 15 minutes. I built this using Route53, RDS replication, and Step Functions to automate the entire process.",
+    category: "AWS Infrastructure",
+    tags: ["Terraform", "AWS", "Step Functions", "Route53", "RDS"],
+    features: [
+      "RTO under 15 min, RPO under 5 min",
+      "Health-based DNS failover",
+      "Cross-region RDS replication",
+      "Automated runbook execution"
+    ],
+    architecture: {
+      type: "multi-region",
+      components: [
+        { name: "Route53", layer: "dns" },
+        { name: "Global Accelerator", layer: "edge" },
+        { name: "ECS/EKS", layer: "compute" },
+        { name: "RDS Multi-AZ", layer: "database" },
+        { name: "S3 CRR", layer: "storage" },
+        { name: "Step Functions", layer: "orchestration" }
+      ]
+    }
+  },
+  {
+    id: "aws-eks-observability",
+    title: "AWS EKS Observability",
+    description: "A complete observability stack for Kubernetes. Prometheus for metrics, Loki for logs, Tempo for traces, all tied together with Grafana dashboards.",
+    category: "Kubernetes",
+    tags: ["EKS", "Prometheus", "Grafana", "Loki", "Terraform"],
+    features: [
+      "Unified metrics, logs, traces",
+      "IRSA for secure AWS access",
+      "Long-term S3 storage",
+      "Pre-built dashboards"
+    ],
+    architecture: {
+      type: "kubernetes",
+      components: [
+        { name: "Prometheus/Thanos", layer: "metrics" },
+        { name: "Loki", layer: "logs" },
+        { name: "Tempo", layer: "traces" },
+        { name: "Grafana", layer: "visualization" },
+        { name: "Alertmanager", layer: "alerting" },
+        { name: "S3 Backend", layer: "storage" }
+      ]
+    }
+  },
+  {
+    id: "aws-security-compliance",
+    title: "AWS Security Compliance",
+    description: "Security scanning and auto-remediation built on Security Hub, GuardDuty, and Config. When something drifts out of compliance, Lambda functions fix it automatically.",
+    category: "Security",
+    tags: ["Security Hub", "GuardDuty", "Config", "Lambda", "Terraform"],
+    features: [
+      "CIS/PCI-DSS/SOC2/HIPAA compliance",
+      "Auto-remediation workflows",
+      "Real-time security alerts",
+      "Compliance dashboards"
+    ],
+    architecture: {
+      type: "event-driven",
+      components: [
+        { name: "Security Hub", layer: "aggregation" },
+        { name: "GuardDuty", layer: "detection" },
+        { name: "AWS Config", layer: "compliance" },
+        { name: "EventBridge", layer: "routing" },
+        { name: "Lambda", layer: "remediation" },
+        { name: "SNS/Slack", layer: "notifications" }
+      ]
+    }
+  },
+  {
+    id: "aws-landing-zone",
+    title: "AWS Landing Zone",
+    description: "Multi-account setup using AWS Organizations and Control Tower. I automated account provisioning and set up SCPs to keep everything secure by default.",
+    category: "Governance",
+    tags: ["Organizations", "Control Tower", "SCPs", "IAM", "Terraform"],
+    features: [
+      "OU hierarchy management",
+      "Preventive SCPs",
+      "Account factory automation",
+      "Centralized logging"
+    ],
+    architecture: {
+      type: "multi-account",
+      components: [
+        { name: "Management Account", layer: "root" },
+        { name: "Security OU", layer: "security" },
+        { name: "Infrastructure OU", layer: "shared" },
+        { name: "Workloads OU", layer: "production" },
+        { name: "Sandbox OU", layer: "development" },
+        { name: "Log Archive", layer: "audit" }
+      ]
+    }
+  },
+  {
+    id: "aws-cicd-pipeline",
+    title: "AWS CI/CD Pipeline",
+    description: "Production deployment pipeline using CodePipeline and CodeBuild. Supports blue-green and canary deployments with automatic rollback if something goes wrong.",
+    category: "DevOps",
+    tags: ["CodePipeline", "CodeBuild", "CodeDeploy", "ECR", "Terraform"],
+    features: [
+      "Blue-green deployments",
+      "Cross-account promotion",
+      "Container scanning",
+      "Automated rollback"
+    ],
+    architecture: {
+      type: "pipeline",
+      components: [
+        { name: "CodeCommit/GitHub", layer: "source" },
+        { name: "CodeBuild", layer: "build" },
+        { name: "ECR", layer: "registry" },
+        { name: "CodeDeploy", layer: "deploy" },
+        { name: "ECS/EKS", layer: "runtime" },
+        { name: "CloudWatch", layer: "monitoring" }
+      ]
+    }
+  }
+];
+
+const getCategoryColor = (category: string) => {
+  const colors: Record<string, string> = {
+    "Full-Stack": "#8b5cf6",
+    "AWS Infrastructure": "#f97316",
+    "Kubernetes": "#06b6d4",
+    "Security": "#ef4444",
+    "Governance": "#10b981",
+    "DevOps": "#3b82f6"
+  };
+  return colors[category] || "#6b7280";
+};
+---
+
+<section class="projects section" id="projects">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">My Work</span>
+      <h2 class="section-title">Projects I Have Built</h2>
+      <p class="section-description">
+        Here are some of the infrastructure and platform projects I have worked on. 
+        Each one taught me something new about building reliable systems at scale.
+      </p>
+    </div>
+    
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-meta">
+              <span class="project-category" style={`--cat-color: ${getCategoryColor(project.category)}`}>
+                {project.category}
+              </span>
+            </div>
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-description">{project.description}</p>
+          </div>
+          
+          <div class="architecture-diagram">
+            <div class="diagram-title">Architecture</div>
+            <div class={`diagram diagram-${project.architecture.type}`}>
+              {project.architecture.components.map((component, index) => (
+                <div class="diagram-node" style={`--delay: ${index * 0.1}s`}>
+                  <span class="node-name">{component.name}</span>
+                  <span class="node-layer">{component.layer}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div class="project-features">
+            <h4>Key Features</h4>
+            <ul>
+              {project.features.map((feature) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </div>
+          
+          <div class="project-tags">
+            {project.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="more-projects">
+      <p>Plus 4 more projects including AWS Cost Optimizer, Instance Scheduler, Server Tagging Module, and Homeschool Planner PWA.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: all 0.3s;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .project-category {
+    display: inline-flex;
+    padding: 4px 12px;
+    background: color-mix(in srgb, var(--cat-color) 15%, transparent);
+    color: var(--cat-color);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 12px 0 8px;
+    color: var(--text-primary);
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .architecture-diagram {
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .diagram-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+  }
+
+  .diagram {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .diagram-node {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+    animation: fadeIn 0.4s ease-out forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .node-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .node-layer {
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .diagram-serverless .diagram-node:nth-child(1) { grid-column: 1; }
+  .diagram-serverless .diagram-node:nth-child(2) { grid-column: 2; }
+  .diagram-serverless .diagram-node:nth-child(3) { grid-column: 3; }
+  .diagram-serverless .diagram-node:nth-child(4) { grid-column: 1; grid-row: 2; }
+  .diagram-serverless .diagram-node:nth-child(5) { grid-column: 2; grid-row: 2; }
+  .diagram-serverless .diagram-node:nth-child(6) { grid-column: 3; grid-row: 2; }
+
+  .diagram-multi-region .diagram-node:nth-child(1) { grid-column: 2; }
+  .diagram-multi-region .diagram-node:nth-child(2) { grid-column: 2; grid-row: 2; }
+  .diagram-multi-region .diagram-node:nth-child(3) { grid-column: 1; grid-row: 3; }
+  .diagram-multi-region .diagram-node:nth-child(4) { grid-column: 2; grid-row: 3; }
+  .diagram-multi-region .diagram-node:nth-child(5) { grid-column: 3; grid-row: 3; }
+  .diagram-multi-region .diagram-node:nth-child(6) { grid-column: 2; grid-row: 4; }
+
+  .project-features {
+    padding-top: 16px;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .project-features h4 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .project-features ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .project-features li {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .project-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #22c55e;
+    font-size: 0.75rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .tag {
+    padding: 4px 10px;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .more-projects {
+    margin-top: 48px;
+    padding: 32px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  .more-projects p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .diagram {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-features ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .diagram {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

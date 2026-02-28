@@ -1,0 +1,199 @@
+---
+// Contact component
+---
+
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-title">Let's Talk</h2>
+      <p class="section-description">
+        If you want to chat about platform engineering, cloud infrastructure, 
+        or potential opportunities, I would love to hear from you.
+      </p>
+    </div>
+    
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="contact-details">
+            <h3>Email</h3>
+            <a href="mailto:WilliamValdez22@gmail.com">WilliamValdez22@gmail.com</a>
+          </div>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </div>
+          <div class="contact-details">
+            <h3>LinkedIn</h3>
+            <a href="https://linkedin.com/in/william-valdez-2209142b" target="_blank" rel="noopener noreferrer">
+              linkedin.com/in/william-valdez-2209142b
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="contact-details">
+            <h3>Location</h3>
+            <span>Ocala, FL</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-cta">
+        <div class="cta-card">
+          <h3>Open to Opportunities</h3>
+          <p>
+            I am looking for my next challenge in platform engineering or SRE. 
+            I want to join a team where I can help build infrastructure that 
+            makes a real difference.
+          </p>
+          <div class="cta-interests">
+            <span class="interest-tag">Platform Engineering</span>
+            <span class="interest-tag">Site Reliability</span>
+            <span class="interest-tag">Cloud Architecture</span>
+            <span class="interest-tag">DevOps</span>
+            <span class="interest-tag">Agentic AI</span>
+          </div>
+          <a href="mailto:WilliamValdez22@gmail.com" class="btn btn-primary">
+            Send me an email
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    transition: all 0.3s;
+  }
+
+  .contact-card:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .contact-details {
+    flex: 1;
+  }
+
+  .contact-details h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-details a,
+  .contact-details span {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+    word-break: break-word;
+  }
+
+  .contact-details a:hover {
+    color: var(--accent);
+  }
+
+  .cta-card {
+    background: linear-gradient(135deg, var(--card-bg), var(--bg-secondary));
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .cta-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  .cta-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .cta-interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+
+  .interest-tag {
+    padding: 6px 14px;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
