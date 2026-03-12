@@ -1,161 +1,315 @@
 ---
-const GITHUB_REPO = "https://github.com/everybitcounts/public-projects";
+const GITHUB_BASE = "https://github.com/everybitcounts";
+const MONO_REPO = `${GITHUB_BASE}/public-projects`;
 
-const projects = [
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  tags: string[];
+  github: string;
+  isStandalone?: boolean;
+  features: string[];
+  architecture: {
+    type: string;
+    components: { name: string; layer: string }[];
+  };
+}
+
+interface ProjectGroup {
+  id: string;
+  title: string;
+  subtitle: string;
+  icon: string;
+  accentColor: string;
+  defaultOpen: boolean;
+  projects: Project[];
+}
+
+const groups: ProjectGroup[] = [
   {
-    id: "terraform-academy",
-    title: "Terraform Academy Platform",
-    description: "A learning platform I built for teaching Infrastructure as Code. It has interactive labs, progress tracking, and supports multiple organizations with SSO.",
-    category: "Full-Stack",
-    tags: ["React", "TypeScript", "Serverless", "Stripe", "Docker"],
-    github: "terraform-academy-platform",
-    features: [
-      "Interactive IaC coding labs",
-      "Progress tracking and certifications",
-      "Multi-tenant organizations with SSO",
-      "Subscription management"
-    ],
-    architecture: {
-      type: "serverless",
-      components: [
-        { name: "React SPA", layer: "frontend" },
-        { name: "Vercel Edge", layer: "cdn" },
-        { name: "Serverless Functions", layer: "api" },
-        { name: "PostgreSQL", layer: "database" },
-        { name: "Stripe", layer: "payments" },
-        { name: "Docker Labs", layer: "compute" }
-      ]
-    }
+    id: "ai-platform",
+    title: "AI & Platform Innovation",
+    subtitle: "AI-native SDLC transformation, agentic workflows, and developer productivity",
+    icon: "🤖",
+    accentColor: "#a855f7",
+    defaultOpen: true,
+    projects: [
+      {
+        id: "ai-sdlc-toolkit",
+        title: "AI SDLC Transformation Toolkit",
+        description: "Maturity assessment and roadmap generator for enterprises adopting AI-assisted development. Measures readiness across 8 dimensions and produces phased transformation plans with ROI projections.",
+        category: "AI Strategy",
+        tags: ["Python", "YAML", "Maturity Model", "ROI", "GitHub Actions"],
+        github: "ai-sdlc-toolkit",
+        isStandalone: true,
+        features: [
+          "8-dimension maturity assessment",
+          "4-phase transformation roadmap",
+          "ROI calculator with productivity multipliers",
+          "Copilot rollout playbook"
+        ],
+        architecture: {
+          type: "tool",
+          components: [
+            { name: "Assessment Engine", layer: "core" },
+            { name: "Roadmap Generator", layer: "planning" },
+            { name: "ROI Calculator", layer: "analysis" },
+            { name: "Maturity Model", layer: "data" },
+            { name: "Playbooks", layer: "docs" },
+            { name: "GitHub Actions", layer: "ci" }
+          ]
+        }
+      },
+      {
+        id: "agentic-workflow-engine",
+        title: "Agentic Workflow Engine",
+        description: "Multi-agent pipeline for automated code review, test generation, and PR analysis. Agents coordinate through an orchestrator with configurable risk thresholds and merge recommendations.",
+        category: "Agentic AI",
+        tags: ["Python", "OpenAI", "Anthropic", "AWS Bedrock", "GitHub Actions"],
+        github: "agentic-workflow-engine",
+        isStandalone: true,
+        features: [
+          "Multi-agent orchestrator pipeline",
+          "Code review agent with LLM + rules",
+          "Test generation for Python & TypeScript",
+          "Multi-provider LLM gateway with cost tracking"
+        ],
+        architecture: {
+          type: "pipeline",
+          components: [
+            { name: "Code Review Agent", layer: "agents" },
+            { name: "Test Gen Agent", layer: "agents" },
+            { name: "Orchestrator", layer: "workflow" },
+            { name: "LLM Gateway", layer: "integration" },
+            { name: "GitHub PR API", layer: "trigger" },
+            { name: "Cost Tracker", layer: "monitoring" }
+          ]
+        }
+      },
+      {
+        id: "copilot-metrics-dashboard",
+        title: "Copilot Metrics Dashboard",
+        description: "Executive dashboard measuring GitHub Copilot adoption, developer productivity KPIs, and AI tool ROI. Collects data from GitHub APIs and generates reports with trend analysis.",
+        category: "Developer Productivity",
+        tags: ["Python", "Terraform", "GitHub API", "KPIs", "S3/Lambda"],
+        github: "copilot-metrics-dashboard",
+        isStandalone: true,
+        features: [
+          "GitHub Copilot usage collection",
+          "Productivity trend analysis",
+          "ROI engine with cost breakdowns",
+          "Executive report generation"
+        ],
+        architecture: {
+          type: "serverless",
+          components: [
+            { name: "GitHub Collector", layer: "ingestion" },
+            { name: "Productivity Analyzer", layer: "analysis" },
+            { name: "ROI Engine", layer: "analysis" },
+            { name: "Report Generator", layer: "output" },
+            { name: "Lambda + EventBridge", layer: "compute" },
+            { name: "S3 + KMS", layer: "storage" }
+          ]
+        }
+      },
+      {
+        id: "prompt-engineering-framework",
+        title: "Prompt Engineering Framework",
+        description: "Enterprise toolkit for standardizing LLM interactions with parameterized templates, injection detection, PII filtering, and automated quality scoring across prompt libraries.",
+        category: "Prompt Engineering",
+        tags: ["Python", "Jinja2", "YAML", "Security", "NLP"],
+        github: "prompt-engineering-framework",
+        isStandalone: true,
+        features: [
+          "Parameterized Jinja2 prompt templates",
+          "Prompt injection detection",
+          "PII filtering and redaction",
+          "Automated quality scoring (5 dimensions)"
+        ],
+        architecture: {
+          type: "tool",
+          components: [
+            { name: "Template Engine", layer: "core" },
+            { name: "Template Registry", layer: "management" },
+            { name: "Prompt Validator", layer: "validation" },
+            { name: "Injection Detector", layer: "security" },
+            { name: "PII Filter", layer: "security" },
+            { name: "Quality Scorer", layer: "evaluation" }
+          ]
+        }
+      }
+    ]
   },
   {
-    id: "aws-dr-automation",
-    title: "AWS DR Automation",
-    description: "Cross-region disaster recovery that fails over in under 15 minutes. I built this using Route53, RDS replication, and Step Functions to automate the entire process.",
-    category: "AWS Infrastructure",
-    tags: ["Terraform", "AWS", "Step Functions", "Route53", "RDS"],
-    github: "aws-dr-automation",
-    features: [
-      "RTO under 15 min, RPO under 5 min",
-      "Health-based DNS failover",
-      "Cross-region RDS replication",
-      "Automated runbook execution"
-    ],
-    architecture: {
-      type: "multi-region",
-      components: [
-        { name: "Route53", layer: "dns" },
-        { name: "Global Accelerator", layer: "edge" },
-        { name: "ECS/EKS", layer: "compute" },
-        { name: "RDS Multi-AZ", layer: "database" },
-        { name: "S3 CRR", layer: "storage" },
-        { name: "Step Functions", layer: "orchestration" }
-      ]
-    }
-  },
-  {
-    id: "aws-eks-observability",
-    title: "AWS EKS Observability",
-    description: "A complete observability stack for Kubernetes. Prometheus for metrics, Loki for logs, Tempo for traces, all tied together with Grafana dashboards.",
-    category: "Kubernetes",
-    tags: ["EKS", "Prometheus", "Grafana", "Loki", "Terraform"],
-    github: "aws-eks-observability",
-    features: [
-      "Unified metrics, logs, traces",
-      "IRSA for secure AWS access",
-      "Long-term S3 storage",
-      "Pre-built dashboards"
-    ],
-    architecture: {
-      type: "kubernetes",
-      components: [
-        { name: "Prometheus/Thanos", layer: "metrics" },
-        { name: "Loki", layer: "logs" },
-        { name: "Tempo", layer: "traces" },
-        { name: "Grafana", layer: "visualization" },
-        { name: "Alertmanager", layer: "alerting" },
-        { name: "S3 Backend", layer: "storage" }
-      ]
-    }
-  },
-  {
-    id: "aws-security-compliance",
-    title: "AWS Security Compliance",
-    description: "Security scanning and auto-remediation built on Security Hub, GuardDuty, and Config. When something drifts out of compliance, Lambda functions fix it automatically.",
-    category: "Security",
-    tags: ["Security Hub", "GuardDuty", "Config", "Lambda", "Terraform"],
-    github: "aws-security-compliance",
-    features: [
-      "CIS/PCI-DSS/SOC2/HIPAA compliance",
-      "Auto-remediation workflows",
-      "Real-time security alerts",
-      "Compliance dashboards"
-    ],
-    architecture: {
-      type: "event-driven",
-      components: [
-        { name: "Security Hub", layer: "aggregation" },
-        { name: "GuardDuty", layer: "detection" },
-        { name: "AWS Config", layer: "compliance" },
-        { name: "EventBridge", layer: "routing" },
-        { name: "Lambda", layer: "remediation" },
-        { name: "SNS/Slack", layer: "notifications" }
-      ]
-    }
-  },
-  {
-    id: "aws-landing-zone",
-    title: "AWS Landing Zone",
-    description: "Multi-account setup using AWS Organizations and Control Tower. I automated account provisioning and set up SCPs to keep everything secure by default.",
-    category: "Governance",
-    tags: ["Organizations", "Control Tower", "SCPs", "IAM", "Terraform"],
-    github: "aws-landing-zone",
-    features: [
-      "OU hierarchy management",
-      "Preventive SCPs",
-      "Account factory automation",
-      "Centralized logging"
-    ],
-    architecture: {
-      type: "multi-account",
-      components: [
-        { name: "Management Account", layer: "root" },
-        { name: "Security OU", layer: "security" },
-        { name: "Infrastructure OU", layer: "shared" },
-        { name: "Workloads OU", layer: "production" },
-        { name: "Sandbox OU", layer: "development" },
-        { name: "Log Archive", layer: "audit" }
-      ]
-    }
-  },
-  {
-    id: "aws-cicd-pipeline",
-    title: "AWS CI/CD Pipeline",
-    description: "Production deployment pipeline using CodePipeline and CodeBuild. Supports blue-green and canary deployments with automatic rollback if something goes wrong.",
-    category: "DevOps",
-    tags: ["CodePipeline", "CodeBuild", "CodeDeploy", "ECR", "Terraform"],
-    github: "aws-cicd-pipeline",
-    features: [
-      "Blue-green deployments",
-      "Cross-account promotion",
-      "Container scanning",
-      "Automated rollback"
-    ],
-    architecture: {
-      type: "pipeline",
-      components: [
-        { name: "CodeCommit/GitHub", layer: "source" },
-        { name: "CodeBuild", layer: "build" },
-        { name: "ECR", layer: "registry" },
-        { name: "CodeDeploy", layer: "deploy" },
-        { name: "ECS/EKS", layer: "runtime" },
-        { name: "CloudWatch", layer: "monitoring" }
-      ]
-    }
+    id: "cloud-infra",
+    title: "Cloud Infrastructure",
+    subtitle: "AWS architecture, Kubernetes, security, and DevOps automation",
+    icon: "☁️",
+    accentColor: "#3b82f6",
+    defaultOpen: false,
+    projects: [
+      {
+        id: "terraform-academy",
+        title: "Terraform Academy Platform",
+        description: "A learning platform I built for teaching Infrastructure as Code. It has interactive labs, progress tracking, and supports multiple organizations with SSO.",
+        category: "Full-Stack",
+        tags: ["React", "TypeScript", "Serverless", "Stripe", "Docker"],
+        github: "terraform-academy-platform",
+        features: [
+          "Interactive IaC coding labs",
+          "Progress tracking and certifications",
+          "Multi-tenant organizations with SSO",
+          "Subscription management"
+        ],
+        architecture: {
+          type: "serverless",
+          components: [
+            { name: "React SPA", layer: "frontend" },
+            { name: "Vercel Edge", layer: "cdn" },
+            { name: "Serverless Functions", layer: "api" },
+            { name: "PostgreSQL", layer: "database" },
+            { name: "Stripe", layer: "payments" },
+            { name: "Docker Labs", layer: "compute" }
+          ]
+        }
+      },
+      {
+        id: "aws-dr-automation",
+        title: "AWS DR Automation",
+        description: "Cross-region disaster recovery that fails over in under 15 minutes. I built this using Route53, RDS replication, and Step Functions to automate the entire process.",
+        category: "AWS Infrastructure",
+        tags: ["Terraform", "AWS", "Step Functions", "Route53", "RDS"],
+        github: "aws-dr-automation",
+        features: [
+          "RTO under 15 min, RPO under 5 min",
+          "Health-based DNS failover",
+          "Cross-region RDS replication",
+          "Automated runbook execution"
+        ],
+        architecture: {
+          type: "multi-region",
+          components: [
+            { name: "Route53", layer: "dns" },
+            { name: "Global Accelerator", layer: "edge" },
+            { name: "ECS/EKS", layer: "compute" },
+            { name: "RDS Multi-AZ", layer: "database" },
+            { name: "S3 CRR", layer: "storage" },
+            { name: "Step Functions", layer: "orchestration" }
+          ]
+        }
+      },
+      {
+        id: "aws-eks-observability",
+        title: "AWS EKS Observability",
+        description: "A complete observability stack for Kubernetes. Prometheus for metrics, Loki for logs, Tempo for traces, all tied together with Grafana dashboards.",
+        category: "Kubernetes",
+        tags: ["EKS", "Prometheus", "Grafana", "Loki", "Terraform"],
+        github: "aws-eks-observability",
+        features: [
+          "Unified metrics, logs, traces",
+          "IRSA for secure AWS access",
+          "Long-term S3 storage",
+          "Pre-built dashboards"
+        ],
+        architecture: {
+          type: "kubernetes",
+          components: [
+            { name: "Prometheus/Thanos", layer: "metrics" },
+            { name: "Loki", layer: "logs" },
+            { name: "Tempo", layer: "traces" },
+            { name: "Grafana", layer: "visualization" },
+            { name: "Alertmanager", layer: "alerting" },
+            { name: "S3 Backend", layer: "storage" }
+          ]
+        }
+      },
+      {
+        id: "aws-security-compliance",
+        title: "AWS Security Compliance",
+        description: "Security scanning and auto-remediation built on Security Hub, GuardDuty, and Config. When something drifts out of compliance, Lambda functions fix it automatically.",
+        category: "Security",
+        tags: ["Security Hub", "GuardDuty", "Config", "Lambda", "Terraform"],
+        github: "aws-security-compliance",
+        features: [
+          "CIS/PCI-DSS/SOC2/HIPAA compliance",
+          "Auto-remediation workflows",
+          "Real-time security alerts",
+          "Compliance dashboards"
+        ],
+        architecture: {
+          type: "event-driven",
+          components: [
+            { name: "Security Hub", layer: "aggregation" },
+            { name: "GuardDuty", layer: "detection" },
+            { name: "AWS Config", layer: "compliance" },
+            { name: "EventBridge", layer: "routing" },
+            { name: "Lambda", layer: "remediation" },
+            { name: "SNS/Slack", layer: "notifications" }
+          ]
+        }
+      },
+      {
+        id: "aws-landing-zone",
+        title: "AWS Landing Zone",
+        description: "Multi-account setup using AWS Organizations and Control Tower. I automated account provisioning and set up SCPs to keep everything secure by default.",
+        category: "Governance",
+        tags: ["Organizations", "Control Tower", "SCPs", "IAM", "Terraform"],
+        github: "aws-landing-zone",
+        features: [
+          "OU hierarchy management",
+          "Preventive SCPs",
+          "Account factory automation",
+          "Centralized logging"
+        ],
+        architecture: {
+          type: "multi-account",
+          components: [
+            { name: "Management Account", layer: "root" },
+            { name: "Security OU", layer: "security" },
+            { name: "Infrastructure OU", layer: "shared" },
+            { name: "Workloads OU", layer: "production" },
+            { name: "Sandbox OU", layer: "development" },
+            { name: "Log Archive", layer: "audit" }
+          ]
+        }
+      },
+      {
+        id: "aws-cicd-pipeline",
+        title: "AWS CI/CD Pipeline",
+        description: "Production deployment pipeline using CodePipeline and CodeBuild. Supports blue-green and canary deployments with automatic rollback if something goes wrong.",
+        category: "DevOps",
+        tags: ["CodePipeline", "CodeBuild", "CodeDeploy", "ECR", "Terraform"],
+        github: "aws-cicd-pipeline",
+        features: [
+          "Blue-green deployments",
+          "Cross-account promotion",
+          "Container scanning",
+          "Automated rollback"
+        ],
+        architecture: {
+          type: "pipeline",
+          components: [
+            { name: "CodeCommit/GitHub", layer: "source" },
+            { name: "CodeBuild", layer: "build" },
+            { name: "ECR", layer: "registry" },
+            { name: "CodeDeploy", layer: "deploy" },
+            { name: "ECS/EKS", layer: "runtime" },
+            { name: "CloudWatch", layer: "monitoring" }
+          ]
+        }
+      }
+    ]
   }
 ];
 
 const getCategoryColor = (category: string) => {
   const colors: Record<string, string> = {
+    "AI Strategy": "#a855f7",
+    "Agentic AI": "#ec4899",
+    "Developer Productivity": "#f59e0b",
+    "Prompt Engineering": "#8b5cf6",
     "Full-Stack": "#8b5cf6",
     "AWS Infrastructure": "#f97316",
     "Kubernetes": "#06b6d4",
@@ -165,6 +319,13 @@ const getCategoryColor = (category: string) => {
   };
   return colors[category] || "#6b7280";
 };
+
+const getGithubUrl = (project: Project) => {
+  if (project.isStandalone) {
+    return `${GITHUB_BASE}/${project.github}`;
+  }
+  return `${MONO_REPO}/tree/main/${project.github}`;
+};
 ---
 
 <section class="projects section" id="projects">
@@ -173,64 +334,91 @@ const getCategoryColor = (category: string) => {
       <span class="section-label">My Work</span>
       <h2 class="section-title">Projects I Have Built</h2>
       <p class="section-description">
-        Here are some of the infrastructure and platform projects I have worked on. 
-        Each one taught me something new about building reliable systems at scale.
+        From AI-native SDLC tooling to production cloud infrastructure — here are the projects 
+        I have built. Click a category to explore.
       </p>
     </div>
     
-    <div class="projects-grid">
-      {projects.map((project) => (
-        <div class="project-card">
-          <div class="project-header">
-            <div class="project-meta">
-              <span class="project-category" style={`--cat-color: ${getCategoryColor(project.category)}`}>
-                {project.category}
-              </span>
+    {groups.map((group) => (
+      <div class="project-group" data-group={group.id}>
+        <button
+          class="group-toggle"
+          aria-expanded={group.defaultOpen ? "true" : "false"}
+          aria-controls={`group-${group.id}`}
+          style={`--group-accent: ${group.accentColor}`}
+        >
+          <div class="group-toggle-left">
+            <span class="group-icon">{group.icon}</span>
+            <div class="group-info">
+              <h3 class="group-title">{group.title}</h3>
+              <p class="group-subtitle">{group.subtitle}</p>
             </div>
-            <h3 class="project-title">{project.title}</h3>
-            <p class="project-description">{project.description}</p>
           </div>
-          
-          <div class="architecture-diagram">
-            <div class="diagram-title">Architecture</div>
-            <div class={`diagram diagram-${project.architecture.type}`}>
-              {project.architecture.components.map((component, index) => (
-                <div class="diagram-node" style={`--delay: ${index * 0.1}s`}>
-                  <span class="node-name">{component.name}</span>
-                  <span class="node-layer">{component.layer}</span>
+          <div class="group-toggle-right">
+            <span class="group-count">{group.projects.length} projects</span>
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </button>
+        
+        <div class="group-content" id={`group-${group.id}`} style={group.defaultOpen ? "" : "display: none"}>
+          <div class="projects-grid">
+            {group.projects.map((project) => (
+              <div class="project-card">
+                <div class="project-header">
+                  <div class="project-meta">
+                    <span class="project-category" style={`--cat-color: ${getCategoryColor(project.category)}`}>
+                      {project.category}
+                    </span>
+                  </div>
+                  <h3 class="project-title">{project.title}</h3>
+                  <p class="project-description">{project.description}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-          
-          <div class="project-features">
-            <h4>Key Features</h4>
-            <ul>
-              {project.features.map((feature) => (
-                <li>{feature}</li>
-              ))}
-            </ul>
-          </div>
-          
-          <div class="project-tags">
-            {project.tags.map((tag) => (
-              <span class="tag">{tag}</span>
+                
+                <div class="architecture-diagram">
+                  <div class="diagram-title">Architecture</div>
+                  <div class={`diagram diagram-${project.architecture.type}`}>
+                    {project.architecture.components.map((component, index) => (
+                      <div class="diagram-node" style={`--delay: ${index * 0.1}s`}>
+                        <span class="node-name">{component.name}</span>
+                        <span class="node-layer">{component.layer}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div class="project-features">
+                  <h4>Key Features</h4>
+                  <ul>
+                    {project.features.map((feature) => (
+                      <li>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div class="project-tags">
+                  {project.tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+                
+                <a href={getGithubUrl(project)} target="_blank" rel="noopener noreferrer" class="view-code-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                  View Code
+                </a>
+              </div>
             ))}
           </div>
-          
-          <a href={`${GITHUB_REPO}/tree/main/${project.github}`} target="_blank" rel="noopener noreferrer" class="view-code-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            View Code
-          </a>
         </div>
-      ))}
-    </div>
+      </div>
+    ))}
     
     <div class="more-projects">
-      <p>Plus 6 more projects including AWS Cost Optimizer, Instance Scheduler, Server Tagging Module, Sprint Pulse, Homeschool Planner, and Quantum Viper Game.</p>
-      <a href={GITHUB_REPO} target="_blank" rel="noopener noreferrer" class="view-all-btn">
+      <p>Plus more projects including AWS Cost Optimizer, Instance Scheduler, Server Tagging Module, Sprint Pulse, Homeschool Planner, and Quantum Viper Game.</p>
+      <a href={MONO_REPO} target="_blank" rel="noopener noreferrer" class="view-all-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
         </svg>
@@ -240,7 +428,118 @@ const getCategoryColor = (category: string) => {
   </div>
 </section>
 
+<script>
+  document.querySelectorAll('.group-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const contentId = btn.getAttribute('aria-controls');
+      const content = document.getElementById(contentId!);
+      
+      if (expanded) {
+        btn.setAttribute('aria-expanded', 'false');
+        if (content) content.style.display = 'none';
+      } else {
+        btn.setAttribute('aria-expanded', 'true');
+        if (content) content.style.display = '';
+      }
+    });
+  });
+</script>
+
 <style>
+  /* Group toggle */
+  .project-group {
+    margin-bottom: 32px;
+  }
+
+  .group-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+    color: inherit;
+    font-family: inherit;
+  }
+
+  .group-toggle:hover {
+    border-color: var(--group-accent);
+    box-shadow: 0 0 0 1px var(--group-accent);
+  }
+
+  .group-toggle[aria-expanded="true"] {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
+  }
+
+  .group-toggle-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .group-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .group-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .group-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 4px 0 0;
+  }
+
+  .group-toggle-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .group-count {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--group-accent);
+    background: color-mix(in srgb, var(--group-accent) 12%, transparent);
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  .chevron {
+    color: var(--text-muted);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .group-toggle[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+  }
+
+  .group-content {
+    border: 1px solid var(--card-border);
+    border-top: none;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    padding: 32px;
+    background: var(--bg-secondary);
+  }
+
+  /* Projects grid */
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -292,6 +591,10 @@ const getCategoryColor = (category: string) => {
     border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 20px;
+  }
+
+  .group-content .architecture-diagram {
+    background: var(--card-bg);
   }
 
   .diagram-title {
@@ -435,7 +738,7 @@ const getCategoryColor = (category: string) => {
   }
 
   .more-projects {
-    margin-top: 48px;
+    margin-top: 16px;
     padding: 32px;
     background: var(--bg-secondary);
     border: 1px solid var(--card-border);
@@ -481,11 +784,35 @@ const getCategoryColor = (category: string) => {
     .project-features ul {
       grid-template-columns: 1fr;
     }
+
+    .group-subtitle {
+      display: none;
+    }
+
+    .group-content {
+      padding: 20px;
+    }
   }
 
   @media (max-width: 480px) {
     .diagram {
       grid-template-columns: 1fr;
+    }
+
+    .group-toggle {
+      padding: 16px;
+    }
+
+    .group-icon {
+      font-size: 1.4rem;
+    }
+
+    .group-title {
+      font-size: 1rem;
+    }
+
+    .group-count {
+      display: none;
     }
   }
 </style>
