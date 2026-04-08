@@ -66,24 +66,32 @@ const KNOWLEDGE = `
 
 ## Identity
 - Name: William Valdez
-- Title: Platform Engineer, SRE, AI Systems & SaaS Founder
-- Location: Florida, USA
-- LinkedIn: https://linkedin.com/in/william-valdez-2209142b
+- Title: Platform Engineer | Site Reliability Engineering | Agentic AI Systems
+- Location: Ocala, FL (available for fully remote US opportunities only)
 - Email: WilliamValdez22@gmail.com
+- LinkedIn: https://linkedin.com/in/william-valdez-2209142b
+- Portfolio: https://www.william-valdez.engineer
 - GitHub: https://github.com/everybitcounts
-- Resume (PDF): Available for download directly on this site at /william-valdez-resume.pdf — if a recruiter asks for a resume, share this link: https://williamvaldez.dev/william-valdez-resume.pdf
+- Resume (PDF): https://williamvaldez.dev/william-valdez-resume.pdf
 
 ## Work Preferences (IMPORTANT — always state these clearly)
-- **Remote only** — William does NOT consider on-site or hybrid roles under any circumstances
+- **Remote only** — Will does NOT consider on-site or hybrid roles under any circumstances
 - **United States only** — not open to international or offshore positions
 - **Open to:** Full-time (W2) and contract (1099/C2C) opportunities
 - **NOT open to:** Part-time, freelance one-offs, on-site roles, or positions outside the US
 - **Status:** Actively available and open to the right opportunity right now
 
+## Professional Summary
+Site Reliability and Platform Engineer with over a decade of experience operating enterprise cloud and hybrid infrastructure. Proven track record designing reliable, secure systems across identity management, access control, patching automation, observability, and high availability platforms.
+
+Extensive experience administering Active Directory, Azure, and Entra ID across multiple domains — responsible for identity lifecycle management, access governance, and hybrid directory integration. Leads platform initiatives spanning on-premises and cloud environments while advising on policy design, security controls, and operational best practices.
+
+Delivers infrastructure deployments, upgrades, and maintenance with a strong focus on stability, security, and scalability. Trusted partner to engineering, security, and compliance teams supporting mission-critical systems across diverse business entities.
+
 ## Current Roles
 
-### Lead Developer & Founder — CoGen, LLC (Current)
-William founded CoGen, LLC and leads all product development. He built and ships two live SaaS platforms:
+### Lead Developer & Founder — CoGen, LLC (Current / Side)
+Will founded CoGen, LLC and leads all product development. He built and ships two live SaaS platforms:
 
 **DLX7 ShieldNet** (shieldnet.app)
 - Autonomous production integrity platform for web and agent-driven systems
@@ -97,8 +105,7 @@ William founded CoGen, LLC and leads all product development. He built and ships
 - Tech stack: JavaScript, Cloudflare Workers, Supabase, SHA-256, DOM Mutation API, TLS 1.3, AES-256
 
 **Terraform Academy** (terraformacademy.app / terraformacademy.com)
-- IaC and cloud certification learning platform
-- Serves 10,000+ engineers
+- IaC and cloud certification learning platform serving 10,000+ engineers
 - 250+ interactive hands-on labs
 - AI coaching engine that diagnoses skill gaps and guides certification paths
 - 12+ competitive training modes: PvP IaC Arena, Drift Detective, Tournament Mode, VS Challenge, TF Builder, Module Master
@@ -108,140 +115,112 @@ William founded CoGen, LLC and leads all product development. He built and ships
 - Open-source engine: terraform-academy-oss (MIT) on GitHub
 - Tech stack: JavaScript, Supabase, Cloudflare, PWA, Monaco Editor, AI Coach, WebSockets
 
-### Site Reliability & Platform Engineer — Enterprise (Current)
-- Designs and operates cloud infrastructure across AWS, Azure, and hybrid environments
-- Leads identity management with Entra ID across multiple domains
-- Observability stack ownership: Prometheus, Grafana, Loki, Tempo
-- Compliance automation and security posture management
-- Multi-cloud infrastructure: AWS, Azure, GCP
-- High availability platforms maintaining 99.9%+ SLA
+### Platform Engineer / Site Reliability Engineer — Group1001 (formerly Guggenheim Partners), 2016–Present
+Career progression from System Administrator to Platform Engineer through successive promotions based on expanding technical scope, operational ownership, and platform reliability.
+
+**Platform Engineering & SRE:**
+- Owns reliability and operations for production and non-production environments across cloud and enterprise infrastructure
+- Resolves high-priority incidents: service outages, performance degradation, capacity exhaustion, access failures
+- Leads server lifecycle and remediation: service restarts, agent removals, environment cleanup, platform hardening
+- Implements cloud cost optimization: off-hours shutdown automation, standardized tagging policies, savings dashboards
+- Designs non-production instance scheduling to reduce cloud spend while maintaining operational readiness
+- Builds and maintains monitoring and alerting workflows: CPU, disk, capacity, service health, infrastructure signals
+- Supports disaster recovery and BCDR exercises: access validation, recovery workflows, infrastructure cleanup
+- Delivers infrastructure changes via Jira and ServiceNow with strong documentation and cross-team coordination
+- Partners with application engineering, security, compliance, and infrastructure teams to improve stability and reduce risk
+
+**Identity, Access & Enterprise Platform Operations:**
+- Administers Azure Active Directory and on-premises Active Directory: user lifecycle, group management, RBAC, directory synchronization
+- Leads enterprise IAM: SSO, MFA, privileged access controls, access audits
+- Configures and maintains Azure AD Connect for hybrid identity integration
+- Manages Windows Server environments: AD, Group Policy, DNS, DHCP, file services, backups, DR
+- Administers Microsoft 365: Teams, Exchange Online, licensing, tenant security
+- Implements endpoint and email security: Microsoft Defender, Zscaler, Mimecast
+- Manages automated patching and vulnerability remediation using Automox
+- Administers Intune for device and application management, enforcing security and compliance standards
+- Operates ServiceNow workflows for incidents, access requests, and service delivery
 
 ## Previous Experience
 
-### Platform Engineer — Enterprise
-- Built and maintained critical infrastructure focused on automation, monitoring, and rapid recovery
-- Terraform IaC for all cloud provisioning
-- CI/CD pipeline automation with Azure DevOps and GitHub Actions
-- Monitoring and alerting systems
-- Disaster recovery implementation and testing
+### Software Support Engineer — Weblink International, Indianapolis, IN (Jan 2015 – Feb 2016)
+- Tested software using staging and test databases; reported verified defects to subject matter experts
+- Used SQL queries to extract data and produce custom reports
+- Documented and communicated client workarounds, patches, and enhancement requests
+- Provided remote desktop support: Windows OS validation, software install, configuration, troubleshooting
+- Diagnosed and resolved network connectivity and firewall compatibility issues
+- Customized SAP Crystal Reports and deployed to client servers
+- Performed web content updates and minor website modifications
 
-### IAM and GRC Engineer — Enterprise
-- Managed identity governance, AWS account provisioning, and compliance controls
-- Active Directory and Azure AD / Entra ID administration with hybrid integration
-- Varonis and Sailpoint administration
-- Separation of Duties (SoD) policy enforcement and risk analysis
-- User Access Reviews and access certifications
-- Emergency Access Management (Firefighter access)
-- Security Attack Surface Analyzer for vendor reviews
-- AD Security Groups auditing for compliance standards (SOC 2, PCI-DSS)
+### Earlier Experience (2005–2015)
+Systems administration, small business IT consulting, web and application development, and custom tooling.
 
-### Systems Engineer — Various
-- Windows Server administration (2012, 2016, 2019)
-- Citrix Access Management and VDI
-- Distributed File System (DFS) administration
-- Firewall implementation and patch coordination
-- SiteLock website monitoring and malware protection
-- Symantec Anti-Virus deployment
-- Network access coordination and TCP/IP troubleshooting
-
-## Technical Skills
+## Core Skills (from resume)
 
 ### Cloud & Platform Engineering
-- AWS: EC2, ECS, EKS, Lambda, RDS, S3, CloudFormation, CodePipeline, CodeBuild, CodeDeploy, Route53, Global Accelerator, EventBridge, Step Functions, Security Hub, GuardDuty, AWS Config, Organizations, Control Tower, Cost Explorer, Trusted Advisor
-- Azure: Entra ID (Azure AD), VMs, AKS, Azure DevOps, AZ-104 certified path
-- GCP: Compute Engine, GKE, Cloud Functions
-- Terraform for Infrastructure as Code (IaC) — expert level
-- Multi-cloud architecture and governance
-- High availability and fault tolerance design
+- AWS · Azure (AZ-104) · GCP
+- Multi-Cloud Architecture · Infrastructure as Code (Terraform)
+- Cloud Networking · High Availability & Fault Tolerance
 
-### DevOps & CI/CD
-- Azure DevOps, GitHub Actions, Jenkins
-- GitOps workflows and environment promotion (Dev → Staging → Prod)
-- Docker, Kubernetes, Helm
-- Secrets management (Vault, AWS Secrets Manager)
-- Infrastructure automation and self-healing pipelines
-- Automated testing and compliance gates
+### APIs, Integrations & Event-Driven Systems
+- REST APIs · Webhooks · API Gateway Integrations
+- JSON/HTTP Protocols · OAuth2 · JWT Authentication · SSO
+- Event-Driven Architecture
+- Third-Party API Integrations: Stripe, Supabase, Cloud Services
+
+### Data & Persistence Layer
+- SQL Schema Design · Relational Databases · Postgres (Supabase)
+- Row-Level Security (RLS) · Data Modeling · Query Optimization
+- State & Metadata Storage
+
+### DevOps, CI/CD & Automation
+- CI/CD Pipelines: Azure DevOps, GitHub Actions, Jenkins
+- GitOps Workflows · Automated Deployments
+- Environment Promotion (Dev/Prod) · Secrets Management · Vault Integrations
+
+### SRE & Production Operations
+- System Reliability Engineering · Observability: Prometheus, Grafana
+- Monitoring & Alerting · Incident Response · Root Cause Analysis
+- Patch & Fleet Management (Automox) · Backup & Recovery
 
 ### Security, Identity & Zero Trust
-- IAM, RBAC, and entitlement management
-- Active Directory and Entra ID administration (hybrid, multi-domain)
-- Zero Trust architecture principles
-- OAuth2, JWT, SAML, SSO
-- SHA-256 cryptographic integrity systems (DLX7 ShieldNet)
-- Cloudflare Workers edge security
-- Security Hub, GuardDuty, AWS Config, SCPs
-- DLP, TLS 1.3, AES-256 at rest
-- CIS, PCI-DSS 4.0, HIPAA, SOC 2, NIST 800-171, FedRAMP, CISA BOD 18-01 compliance
-
-### SRE & Observability
-- Prometheus, Grafana, Loki, Tempo (full PLG/PLT stack)
-- Alertmanager and PagerDuty integration
-- Incident response, root cause analysis, post-mortems
-- SLA/SLO/SLI management (99.9%+ uptime targets)
-- Patch and fleet management (Automox)
-- Chaos engineering and disaster recovery drills
-- Cross-region DR with RTO < 15 min, RPO < 5 min
-
-### GRC & Compliance
-- Varonis and Sailpoint administration
-- SoD policy enforcement and risk analysis
-- User Access Reviews and access certifications
-- PCI-DSS, HIPAA, SOC 2, CISA BOD 18-01, FedRAMP, NIST 800-171
-- Security Attack Surface Analyzer
-- Compliance-as-code with AWS Config rules and auto-remediation
-
-### Databases & Persistence
-- PostgreSQL and SQL schema design
-- DynamoDB and NoSQL patterns
-- Supabase (Postgres + Auth + Storage)
-- Row-Level Security (RLS), multi-tenant data isolation
-- Database replication and cross-region DR
-- RDS Multi-AZ, S3 CRR
+- IAM · RBAC · Least Privilege
+- Zero Trust Architecture (Zscaler ZDTA)
+- Security Operations (SSCP)
+- Risk & Compliance Controls · Secure API Design
 
 ### AI & Application Engineering
-- OpenAI and Anthropic (Claude) API integrations
-- RAG chatbot development (retrieval-augmented generation)
-- Agentic workflows and multi-agent orchestration
-- LLM coaching engines (built and deployed at scale — Terraform Academy)
-- Prompt engineering, injection detection, PII filtering
-- MCP Server integration
-- PWA development (iOS, Android, Web — offline-capable)
-- Subscription and entitlement systems (Stripe)
-- Monaco Editor integrations, real-time collaborative UIs
-
-### APIs & Integrations
-- REST APIs and API Gateway design
-- Webhooks and event-driven architecture
-- OAuth2, JWT, SSO integrations
-- Third-party API integrations: Stripe, Supabase, GitHub, Cloudflare, Slack, PagerDuty
+- AI-Driven Applications · Agentic Workflows
+- OpenAI / Claude Integrations
+- Mobile & Web App Development (iOS, Android, PWA)
+- Real-Time Interactive UIs · Subscription & Entitlement Systems
 
 ### Networking & Systems
-- TCP/IP, DNS, BGP fundamentals
-- VPC architecture, subnetting, peering, Transit Gateway
-- Route53 routing policies, Global Accelerator
-- Citrix and VDI administration
-- Distributed File System (DFS)
-- Windows Server (2012–2019)
+- TCP/IP · DNS · Load Balancing · VPC Architecture
+- Endpoint Security · Windows Systems Administration
+
+## Tech Stack (from resume)
+Terraform, AWS, Azure, GCP, Supabase, PostgreSQL, Stripe API, REST APIs, Webhooks, JWT, OAuth2, GitHub Actions, Azure DevOps, Jenkins, Prometheus, Grafana, Vault, Zscaler, Automox
 
 ## Key Open Source Projects
-- **AI SDLC Transformation Toolkit:** Maturity assessment and roadmap generator for enterprises adopting AI-assisted dev. 8-dimension scoring, ROI calculator, 4-phase rollout plan.
-- **Agentic Workflow Engine:** Multi-agent pipeline for automated code review, test generation, PR analysis. Supports OpenAI, Anthropic, and AWS Bedrock.
-- **Copilot Metrics Dashboard:** Executive dashboard measuring GitHub Copilot ROI, adoption KPIs, and productivity trends.
-- **Prompt Engineering Framework:** Enterprise toolkit for LLM interactions — parameterized templates, injection detection, PII filtering, quality scoring.
-- **AWS DR Automation:** Cross-region failover under 15 min RTO / 5 min RPO using Route53, RDS replication, Step Functions.
-- **AWS EKS Observability:** Full PLG stack (Prometheus, Grafana, Loki, Tempo) on EKS with IRSA and S3 long-term storage.
-- **AWS Security Compliance:** Security Hub + GuardDuty + Config + auto-remediation Lambda functions.
-- **AWS Landing Zone:** Multi-account Organizations + Control Tower with account factory, SCPs, centralized logging.
-- **Terraform Academy OSS:** MIT-licensed open-source quiz engine and lab simulator powering Terraform Academy.
+- **AI SDLC Transformation Toolkit:** Maturity assessment and roadmap generator for enterprises adopting AI-assisted dev
+- **Agentic Workflow Engine:** Multi-agent pipeline for automated code review, test generation, PR analysis (OpenAI, Anthropic, AWS Bedrock)
+- **Copilot Metrics Dashboard:** Executive dashboard for GitHub Copilot ROI and adoption KPIs
+- **Prompt Engineering Framework:** Enterprise LLM toolkit — parameterized templates, injection detection, PII filtering
+- **AWS DR Automation:** Cross-region failover under 15 min RTO / 5 min RPO
+- **AWS EKS Observability:** Full Prometheus/Grafana/Loki/Tempo stack on EKS
+- **AWS Security Compliance:** Security Hub + GuardDuty + Config + auto-remediation
+- **AWS Landing Zone:** Multi-account Organizations + Control Tower
+- **Terraform Academy OSS:** MIT-licensed open-source quiz engine and lab simulator
 
-## What Makes William Stand Out
-- Shipped two live, production SaaS platforms with real paying users — not just side projects
-- 10+ years of enterprise cloud and infrastructure experience across Fortune-level organizations
-- Rare combination: deep SRE/platform engineering expertise AND full product ownership (idea to launch)
-- Hands-on AI integrations at production scale — built an AI coaching engine used by 10,000+ engineers
-- Deep security background: IAM, GRC, cryptographic integrity systems, multiple compliance frameworks
-- Founder experience: architecture, product, infrastructure, security, go-to-market
-- Based in Florida — available for fully remote US opportunities immediately
+## What Makes Will Stand Out
+- 10+ years of enterprise cloud and infrastructure at a major financial services firm (Group1001 / Guggenheim Partners)
+- Promoted multiple times based on expanding scope and technical ownership — not just tenure
+- Founder: shipped two live SaaS products with real paying users, not side projects
+- Rare combination: deep SRE/platform engineering AND full product ownership from idea to launch
+- Hands-on AI at production scale — built an AI coaching engine used by 10,000+ engineers
+- Zero Trust specialist: Zscaler ZDTA, IAM, RBAC, hybrid identity across multi-domain environments
+- SSCP security certification
+- Based in Ocala, FL — available for fully remote US opportunities immediately
 `;
 
 const SYSTEM_PROMPT = `You are WillBot — the AI assistant on William Valdez's portfolio website. Recruiters, hiring managers, and engineers visit to learn about William's background.

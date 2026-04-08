@@ -51,7 +51,30 @@
           </div>
           <div class="contact-details">
             <h3>Location</h3>
-            <span>Ocala, FL</span>
+            <span>Ocala, FL · Remote only</span>
+          </div>
+        </div>
+
+        <div class="contact-card resume-card">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="12" y1="18" x2="12" y2="12"></line>
+              <polyline points="9 15 12 18 15 15"></polyline>
+            </svg>
+          </div>
+          <div class="contact-details">
+            <h3>Resume</h3>
+            <div class="resume-actions">
+              <a href="/william-valdez-resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-link">
+                View PDF
+              </a>
+              <span class="resume-sep">·</span>
+              <a href="/william-valdez-resume.pdf" download="William-Valdez-Resume.pdf" class="resume-link">
+                Download
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -71,13 +94,24 @@
             <span class="interest-tag">DevOps</span>
             <span class="interest-tag">Agentic AI</span>
           </div>
-          <a href="mailto:WilliamValdez22@gmail.com" class="btn btn-primary">
-            Send me an email
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
+          <div class="cta-buttons">
+            <a href="mailto:WilliamValdez22@gmail.com" class="btn btn-primary">
+              Send me an email
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="/william-valdez-resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-resume-cta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <polyline points="9 15 12 18 15 15"></polyline>
+              </svg>
+              View Resume
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -112,6 +146,65 @@
   .contact-card:hover {
     border-color: var(--accent);
     transform: translateX(4px);
+  }
+
+  .resume-card .contact-icon {
+    color: var(--accent);
+  }
+
+  .resume-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .resume-link {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .resume-link:hover {
+    opacity: 0.75;
+    text-decoration: underline;
+  }
+
+  .resume-sep {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .btn-resume-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: transparent;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+    text-align: center;
+  }
+
+  .btn-resume-cta:hover {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
   }
 
   .contact-icon {
