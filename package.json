@@ -10,7 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.16.0"
+    "astro": "^4.16.0",
+    "openai": "^6.33.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

@@ -1,4 +1,6 @@
 ---
+import RecruiterChat from '../components/RecruiterChat.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -124,6 +126,7 @@ const { title, description = "Platform Engineer | Site Reliability Engineering |
       });
     });
   </script>
+  <RecruiterChat />
 </body>
 </html>
 
