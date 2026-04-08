@@ -72,7 +72,7 @@ const KNOWLEDGE = `
 - LinkedIn: https://linkedin.com/in/william-valdez-2209142b
 - Portfolio: https://www.william-valdez.engineer
 - GitHub: https://github.com/everybitcounts
-- Resume (PDF): https://williamvaldez.dev/william-valdez-resume.pdf
+- Resume (PDF): https://www.william-valdez.engineer/william-valdez-resume.pdf
 
 ## Work Preferences (IMPORTANT — always state these clearly)
 - **Remote only** — Will does NOT consider on-site or hybrid roles under any circumstances
