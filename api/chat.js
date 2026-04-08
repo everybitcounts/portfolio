@@ -1,6 +1,63 @@
 import OpenAI from "openai";
 
 // ──────────────────────────────────────────────────
+//  Rate limiting — in-memory, per serverless instance.
+//  Sufficient for a portfolio site (no external DB needed).
+//  Cold starts reset the store; warm instances enforce limits.
+// ──────────────────────────────────────────────────
+const WINDOW_HOUR_MS  = 60 * 60 * 1000; //  1 hour window
+const WINDOW_MIN_MS   = 60 * 1000;       //  1 minute window
+const MAX_PER_HOUR    = 15;              //  requests / IP / hour
+const MAX_PER_MINUTE  = 3;              //  requests / IP / minute (burst guard)
+
+// Map<ip, { hourCount, hourStart, minCount, minStart }>
+const store = new Map();
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  let entry = store.get(ip);
+
+  if (!entry) {
+    entry = { hourCount: 0, hourStart: now, minCount: 0, minStart: now };
+    store.set(ip, entry);
+  }
+
+  // Reset hour window if expired
+  if (now - entry.hourStart > WINDOW_HOUR_MS) {
+    entry.hourCount = 0;
+    entry.hourStart = now;
+  }
+  // Reset minute window if expired
+  if (now - entry.minStart > WINDOW_MIN_MS) {
+    entry.minCount = 0;
+    entry.minStart = now;
+  }
+
+  if (entry.hourCount >= MAX_PER_HOUR)   return "hour";
+  if (entry.minCount  >= MAX_PER_MINUTE) return "minute";
+
+  entry.hourCount++;
+  entry.minCount++;
+  return null; // allowed
+}
+
+// Prune stale entries so the Map doesn't grow unbounded
+function pruneStore() {
+  const now = Date.now();
+  for (const [ip, entry] of store.entries()) {
+    if (now - entry.hourStart > WINDOW_HOUR_MS) store.delete(ip);
+  }
+}
+
+// ──────────────────────────────────────────────────
+//  Cost controls
+// ──────────────────────────────────────────────────
+const MAX_HISTORY_MSGS   = 8;    // only last 8 turns sent to OpenAI
+const MAX_MSG_CHARS      = 500;  // truncate each message to 500 chars
+const MAX_TOKENS_REPLY   = 350;  // cap output tokens (~260 words max)
+const MODEL              = "gpt-4o-mini"; // cheapest OpenAI chat model
+
+// ──────────────────────────────────────────────────
 //  Knowledge base — all facts about William Valdez
 //  Edit this to keep the chatbot up to date.
 // ──────────────────────────────────────────────────
@@ -128,9 +185,26 @@ KNOWLEDGE BASE:
 ${KNOWLEDGE}`;
 
 export default async function handler(req, res) {
+  // Prune stale rate-limit entries on each request (cheap, no timer needed)
+  pruneStore();
+
   // Only allow POST
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  // Per-IP rate limiting — extract real IP from Vercel headers
+  const ip =
+    req.headers["x-forwarded-for"]?.split(",")[0].trim() ||
+    req.headers["x-real-ip"] ||
+    "unknown";
+
+  const limited = checkRateLimit(ip);
+  if (limited === "minute") {
+    return res.status(429).json({ error: "Too many requests. Please wait a moment." });
+  }
+  if (limited === "hour") {
+    return res.status(429).json({ error: "Hourly limit reached. Please email WilliamValdez22@gmail.com directly." });
   }
 
   // Validate API key is configured
@@ -150,32 +224,30 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "messages array required" });
   }
 
-  // Sanitize: only allow role/content fields, cap conversation history
-  const MAX_HISTORY = 20;
+  // Sanitize: only role/content, hard-cap history and per-message length
   const sanitized = messages
-    .slice(-MAX_HISTORY)
+    .slice(-MAX_HISTORY_MSGS)
     .map(({ role, content }) => ({
       role: ["user", "assistant"].includes(role) ? role : "user",
-      content: String(content).slice(0, 2000),
+      content: String(content).slice(0, MAX_MSG_CHARS),
     }));
 
   try {
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: MODEL,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         ...sanitized,
       ],
-      max_tokens: 600,
-      temperature: 0.4,
+      max_tokens: MAX_TOKENS_REPLY,
+      temperature: 0.3,
     });
 
     const reply = completion.choices[0]?.message?.content ?? "";
     return res.status(200).json({ reply });
   } catch (err) {
-    // Don't leak internal OpenAI error details
     console.error("OpenAI error:", err?.message);
     return res.status(502).json({ error: "AI service unavailable. Please try again." });
   }

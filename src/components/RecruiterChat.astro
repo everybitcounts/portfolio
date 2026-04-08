@@ -88,6 +88,7 @@
 
   // Conversation history for multi-turn context
   const history = [];
+  const MAX_CLIENT_TURNS = 15; // hard cap — prevents runaway API costs
   let isOpen = false;
   let isLoading = false;
 
@@ -136,6 +137,13 @@
   });
 
   function sendMessage(text) {
+    // Client-side hard cap to prevent runaway API costs
+    const userTurns = history.filter(m => m.role === 'user').length;
+    if (userTurns >= MAX_CLIENT_TURNS) {
+      addBotMessage("You've reached the session limit. To continue, please reach out directly:\n\n**Email:** WilliamValdez22@gmail.com\n**LinkedIn:** [William Valdez](https://linkedin.com/in/william-valdez-2209142b)");
+      input.disabled = true;
+      return;
+    }
     addUserMessage(text);
     history.push({ role: 'user', content: text });
     fetchReply();
@@ -182,6 +190,10 @@
       const data = await res.json();
       bubble.remove();
 
+      if (res.status === 429) {
+        addBotMessage(`⚠️ ${data.error}`);
+        return;
+      }
       if (!res.ok || data.error) {
         addBotMessage('Sorry, something went wrong. Please try again or email WilliamValdez22@gmail.com directly.');
         return;
