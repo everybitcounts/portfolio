@@ -16,14 +16,17 @@
     
     <h2 class="hero-subtitle">
       Platform Engineer <span class="divider">|</span> 
-      Site Reliability Engineering <span class="divider">|</span> 
-      Agentic AI Systems
+      AI Systems &amp; SaaS Founder <span class="divider">|</span> 
+      Site Reliability Engineering
     </h2>
     
     <p class="hero-description">
-      I have spent over a decade building and running cloud and hybrid infrastructure 
-      for enterprise organizations. I care about making systems that stay up, stay secure, 
-      and make life easier for the teams that depend on them.
+      I build and ship production systems. I founded CoGen, LLC where I lead development of 
+      <a href="https://shieldnet.app" target="_blank" rel="noopener noreferrer" class="hero-inline-link">DLX7 ShieldNet</a> — 
+      an autonomous web integrity platform — and 
+      <a href="https://terraformacademy.app" target="_blank" rel="noopener noreferrer" class="hero-inline-link">Terraform Academy</a>, 
+      an IaC and cloud certification platform serving 10,000+ engineers. 
+      I also design and operate enterprise cloud infrastructure across AWS, Azure, and hybrid environments.
     </p>
     
     <div class="hero-actions">
@@ -168,6 +171,18 @@
     color: var(--text-secondary);
     margin-bottom: 32px;
     max-width: 500px;
+  }
+
+  .hero-inline-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    transition: border-color 0.2s;
+  }
+
+  .hero-inline-link:hover {
+    border-color: var(--accent);
   }
 
   .hero-actions {
