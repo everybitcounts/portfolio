@@ -71,6 +71,7 @@ const KNOWLEDGE = `
 - LinkedIn: https://linkedin.com/in/william-valdez-2209142b
 - Email: WilliamValdez22@gmail.com
 - GitHub: https://github.com/everybitcounts
+- Resume (PDF): Available for download directly on this site at /william-valdez-resume.pdf — if a recruiter asks for a resume, share this link: https://williamvaldez.dev/william-valdez-resume.pdf
 
 ## Work Preferences (IMPORTANT — always state these clearly)
 - **Remote only** — William does NOT consider on-site or hybrid roles under any circumstances
