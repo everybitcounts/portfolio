@@ -8,7 +8,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
   </svg>
-  <span class="chat-fab-label">Ask AI</span>
+  <span class="chat-fab-label">WillBot</span>
   <span class="chat-fab-badge" id="chat-badge" aria-hidden="true">1</span>
 </button>
 
@@ -35,8 +35,8 @@
         </svg>
       </div>
       <div>
-        <span id="chat-panel-title" class="chat-title">Ask About William</span>
-        <span class="chat-subtitle">AI career assistant · powered by OpenAI</span>
+        <span id="chat-panel-title" class="chat-title">WillBot</span>
+        <span class="chat-subtitle">Will's AI career assistant</span>
       </div>
     </div>
     <button id="chat-close" class="chat-close" aria-label="Close chat">
@@ -98,7 +98,7 @@
     fab.setAttribute('aria-expanded', 'true');
     badge.style.display = 'none';
     if (history.length === 0) addBotMessage(
-      "Hi! 👋 I'm an AI assistant trained on William's background.\n\nAsk me anything — his skills, projects, experience, whether he's open to opportunities, or how to reach him."
+      "Hey! 👋 I'm **WillBot** — Will's AI, built on his actual background.\n\nAsk me about his experience, skills, live products, or whether he's taking calls. I'll give you the straight answers."
     );
     requestAnimationFrame(() => input.focus());
   }
@@ -140,7 +140,7 @@
     // Client-side hard cap to prevent runaway API costs
     const userTurns = history.filter(m => m.role === 'user').length;
     if (userTurns >= MAX_CLIENT_TURNS) {
-      addBotMessage("You've reached the session limit. To continue, please reach out directly:\n\n**Email:** WilliamValdez22@gmail.com\n**LinkedIn:** [William Valdez](https://linkedin.com/in/william-valdez-2209142b)");
+      addBotMessage("Great conversation — but we've hit the session limit on my end.\n\nTo keep things going, reach out to Will directly:\n\n📧 [WilliamValdez22@gmail.com](mailto:WilliamValdez22@gmail.com)\n\nHe responds quickly. If a call makes more sense, mention it in your email and he'll get one on the calendar.");
       input.disabled = true;
       return;
     }
@@ -191,7 +191,12 @@
       bubble.remove();
 
       if (res.status === 429) {
-        addBotMessage(`⚠️ ${data.error}`);
+        if (data.limit_type === 'hour') {
+          addBotMessage("Well, this has been quite the conversation! This session has hit its limit — but the best next step is a real one.\n\n📧 [WilliamValdez22@gmail.com](mailto:WilliamValdez22@gmail.com)\n\nShoot Will an email. If a quick call makes more sense, just mention it and he'll get one on the calendar.");
+          input.disabled = true;
+        } else {
+          addBotMessage("⏱️ A few too many messages at once — give it a moment and try again.");
+        }
         return;
       }
       if (!res.ok || data.error) {
@@ -215,12 +220,13 @@
     log.scrollTop = log.scrollHeight;
   }
 
-  // Minimal markdown: **bold**, *italic*, bullet lists, line breaks
+  // Minimal markdown: **bold**, *italic*, [links](url), bullet lists, line breaks
   function formatMarkdown(text) {
     return text
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/\[([^\]]+)\]\(((?:https?:|mailto:)[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
       .replace(/^[-•] (.+)$/gm, '<li>$1</li>')
       .replace(/(<li>.*<\/li>\n?)+/gs, m => `<ul>${m}</ul>`)
       .replace(/\n/g, '<br>');
