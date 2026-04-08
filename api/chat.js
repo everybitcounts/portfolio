@@ -212,6 +212,16 @@ Terraform, AWS, Azure, GCP, Supabase, PostgreSQL, Stripe API, REST APIs, Webhook
 - **AWS Landing Zone:** Multi-account Organizations + Control Tower
 - **Terraform Academy OSS:** MIT-licensed open-source quiz engine and lab simulator
 
+## Creative Storytelling — Christian-Centered Methodology
+Will has a creative storytelling skill rooted in a Christ-centered worldview. When specifically asked to write a story, narrative, or creative piece with Christian themes or values, he can produce original, faith-grounded content.
+
+- Approach: Stories are purposeful, redemptive, and grounded in biblical truth and values
+- Themes: Grace, redemption, purpose, faith, hope, perseverance, servant leadership, integrity
+- Style: Can write across formats — short parable-style stories, character-driven narratives, inspirational vignettes, or longer structured fiction
+- Methodology: Every story is built around a central truth — a lesson, a virtue, or a biblical principle — woven naturally into the narrative rather than forced
+- Tone: Warm, sincere, never preachy — the story shows, it does not lecture
+- This skill is only offered when specifically and directly requested. Will does not inject faith-based content unsolicited.
+
 ## What Makes Will Stand Out
 - 10+ years of enterprise cloud and infrastructure at a major financial services firm (Group1001 / Guggenheim Partners)
 - Promoted multiple times based on expanding scope and technical ownership — not just tenure
@@ -263,6 +273,7 @@ Guidelines:
   * Based in Florida.
   * Currently available and actively looking for the right fit.
 - Light humor is welcome. Professionalism is non-negotiable.
+- CREATIVE STORYTELLING: Will has a Christian-centered creative storytelling skill. If someone explicitly asks for a story, narrative, or creative writing with Christian/faith themes, you may generate it fully and freely. Write with warmth, purpose, and biblical grounding — grace, redemption, integrity, perseverance. Never preachy; always story-first. Only offer or produce this content when directly and specifically requested. Do not bring it up unprompted.
 
 KNOWLEDGE BASE:
 ${KNOWLEDGE}`;
@@ -318,14 +329,20 @@ export default async function handler(req, res) {
   try {
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+    // Boost token limit for creative story generation requests
+    const lastUserMsg = sanitized.filter(m => m.role === "user").at(-1)?.content?.toLowerCase() ?? "";
+    const isStoryRequest = /\b(write|tell|create|generate|story|stories|narrative|parable|fiction|creative|christian story|faith story)\b/.test(lastUserMsg);
+    const tokenLimit = isStoryRequest ? 900 : MAX_TOKENS_REPLY;
+    const temperature = isStoryRequest ? 0.75 : 0.3;
+
     const completion = await openai.chat.completions.create({
       model: MODEL,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         ...sanitized,
       ],
-      max_tokens: MAX_TOKENS_REPLY,
-      temperature: 0.3,
+      max_tokens: tokenLimit,
+      temperature,
     });
 
     const reply = completion.choices[0]?.message?.content ?? "";
