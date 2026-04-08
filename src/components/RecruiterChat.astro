@@ -92,14 +92,51 @@
   let isOpen = false;
   let isLoading = false;
 
+  // Rotating icebreaker quips — one shown randomly on each chat open
+  const QUIPS = [
+    "I specialize in turning vague concerns into very specific findings.",
+    "The logs are speaking. Unfortunately, they are speaking in riddles.",
+    "I support innovation, especially when it includes rollback.",
+    "This appears to be a configuration issue — excellent news for everyone except the person who configured it.",
+    "I have reviewed the evidence and would like to blame entropy.",
+    "The platform is stable enough for a screenshot.",
+    "Please hold while I translate this outage into executive English.",
+    "I do not guess. I perform structured suspicion.",
+    "We are one undocumented dependency away from a learning experience.",
+    "Confidence is useful. Verification is billable.",
+    "I do my best work right after someone says, 'This should be a quick fix.'",
+    "Every environment is production when someone important is watching.",
+    "I don't fear change. I fear undocumented change.",
+    "The system is highly available right up until the demo starts.",
+    "The bug was fixed the moment three people joined the call.",
+    "'Works on my machine' is a statement, not a strategy.",
+    "Nothing says teamwork like six people quietly blaming DNS.",
+    "A temporary workaround is one of the most permanent things in IT.",
+    "I'm not skeptical. I'm just experienced.",
+    "Legacy systems are just software with seniority.",
+    "I trust automation deeply, which is why I read what it's about to do.",
+    "Root cause analysis is where confidence goes to meet evidence.",
+    "In IT, maturity is knowing the problem might be simple and checking anyway.",
+    "Most system design is deciding where future regret should live.",
+    "I don't collect technical debt. I receive it from previous administrations.",
+    "We improved reliability by removing the exciting parts.",
+    "The requirements were clear right until implementation began.",
+    "I value transparency, especially in incidents and coffee mugs.",
+    "The real uptime metric is how long nobody important notices.",
+    "Some meetings could have been logs.",
+  ];
+
   function openPanel() {
     isOpen = true;
     panel.style.display = 'flex';
     fab.setAttribute('aria-expanded', 'true');
     badge.style.display = 'none';
-    if (history.length === 0) addBotMessage(
-      "Hey! 👋 I'm **WillBot** — Will's AI, built on his actual background.\n\nAsk me about his experience, skills, live products, or whether he's taking calls. I'll give you the straight answers."
-    );
+    if (history.length === 0) {
+      const quip = QUIPS[Math.floor(Math.random() * QUIPS.length)];
+      addBotMessage(
+        `*"${quip}"*\n\nHey! 👋 I'm **WillBot** — Will's AI, built from his actual experience.\n\nAsk me about his skills, live products, work preferences, or how to reach him. I give straight answers.`
+      );
+    }
     requestAnimationFrame(() => input.focus());
   }
 
